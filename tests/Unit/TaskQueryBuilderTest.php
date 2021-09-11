@@ -13,7 +13,7 @@ test('the task status is in progress', function () {
     Task::factory()->isInProgress()->create();
     Task::factory()->isReviewed()->create();
 
-    $this->assertEquals(1, Task::query()->isInprogress()->count());
+    $this->assertEquals(1, Task::query()->isInProgress()->count());
 });
 
 test('the task status is reviewed', function () {

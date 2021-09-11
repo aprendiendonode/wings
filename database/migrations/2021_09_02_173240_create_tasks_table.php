@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
-use App\Models\Project;
+use Domain\User\Models\User;
+use Domain\Project\Models\Project;
 use Domain\Task\States\Open;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;

@@ -1,16 +1,16 @@
 <?php
 
-use App\Models\User;
-use App\Models\Project;
+use Domain\User\Models\User;
+use Domain\Project\Models\Project;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMembersTable extends Migration
+class CreateProjectMembersTable extends Migration
 {
     public function up()
     {
-        Schema::create('projects_members', function (Blueprint $table) {
+        Schema::create('project_members', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Project::class);
             $table->foreignIdFor(User::class);
@@ -21,6 +21,6 @@ class CreateMembersTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('project_members');
     }
 }

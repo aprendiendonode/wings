@@ -4,6 +4,9 @@ namespace Support\Kernels;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel;
+use Support\Commands\CreateUser;
+use Support\Commands\DatabaseDump;
+use Support\Commands\PruneNotifications;
 
 class Console extends Kernel
 {
@@ -13,7 +16,9 @@ class Console extends Kernel
      * @var array
      */
     protected $commands = [
-
+        CreateUser::class,
+        DatabaseDump::class,
+        PruneNotifications::class,
     ];
 
     /**
@@ -31,17 +36,5 @@ class Console extends Kernel
         $schedule->command('notifications:prune --days=30')->daily();
         $schedule->command('backup:clean')->daily();
         $schedule->command('backup:run')->daily()->at('01:00');
-    }
-
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
-    {
-        $this->load(dirname(__DIR__) . '/Commands');
-
-        require base_path('routes/console.php');
     }
 }

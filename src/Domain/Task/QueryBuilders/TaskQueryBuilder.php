@@ -20,7 +20,7 @@ class TaskQueryBuilder extends Builder
         return $this->statusIs(Open::CODE);
     }
 
-    public function scopeIsInProgress(): Builder
+    public function isInProgress(): Builder
     {
         return $this->statusIs(InProgress::CODE);
     }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Label;
+use Domain\Label\Models\Label;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
