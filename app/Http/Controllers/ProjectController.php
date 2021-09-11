@@ -7,10 +7,26 @@ use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProjectRequest;
+use App\Http\Resources\ProjectResource;
 use App\Http\Requests\ProjectMembersRequest;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProjectController extends Controller
 {
+    public function index(): AnonymousResourceCollection
+    {
+        $this->authorize('viewAny', Project::class);
+
+        return ProjectResource::collection(Project::paginate());
+    }
+
+    public function show(Project $project): ProjectResource
+    {
+        $this->authorize('view', Project::class);
+
+        return new ProjectResource($project);
+    }
+
     public function store(ProjectRequest $request): JsonResponse
     {
         $this->authorize('create', Project::class);

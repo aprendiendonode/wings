@@ -6,9 +6,25 @@ use App\Models\Label;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\LabelRequest;
+use App\Http\Resources\LabelResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class LabelController extends Controller
 {
+    public function index(): AnonymousResourceCollection
+    {
+        $this->authorize('viewAny', Label::class);
+
+        return LabelResource::collection(Label::paginate());
+    }
+
+    public function show(Label $label): LabelResource
+    {
+        $this->authorize('view', Label::class);
+
+        return new LabelResource($label);
+    }
+
     public function store(LabelRequest $request): JsonResponse
     {
         $this->authorize('create', Label::class);

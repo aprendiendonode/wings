@@ -6,9 +6,25 @@ use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserController extends Controller
 {
+    public function index(): AnonymousResourceCollection
+    {
+        $this->authorize('viewAny', User::class);
+
+        return UserResource::collection(User::paginate());
+    }
+
+    public function show(User $user): UserResource
+    {
+        $this->authorize('view', User::class);
+
+        return new UserResource($user);
+    }
+
     public function store(UserRequest $request): JsonResponse
     {
         $this->authorize('create', Label::class);

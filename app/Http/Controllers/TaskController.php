@@ -6,12 +6,27 @@ use App\Models\Task;
 use Illuminate\Http\Response;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\TaskRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\TaskResource;
 use App\Http\Requests\TaskAssigneesRequest;
 use App\Http\Requests\TaskReviewersRequest;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TaskController extends Controller
 {
+    public function index(): AnonymousResourceCollection
+    {
+        $this->authorize('viewAny', Task::class);
+
+        return TaskResource::collection(Task::paginate());
+    }
+
+    public function show(Task $task): TaskResource
+    {
+        $this->authorize('view', Task::class);
+
+        return new TaskResource($task);
+    }
+
     public function store(TaskRequest $request): JsonResponse
     {
         $this->authorize('create', Label::class);
