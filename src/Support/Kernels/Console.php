@@ -29,6 +29,8 @@ class Console extends Kernel
         $schedule->command('auth:clear-resets users')->daily();
         $schedule->command('telescope:prune --hours=48')->daily();
         $schedule->command('notifications:prune --days=30')->daily();
+        $schedule->command('backup:clean')->daily();
+        $schedule->command('backup:run')->daily()->at('01:00');
     }
 
     /**

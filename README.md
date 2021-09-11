@@ -1,5 +1,7 @@
 ## Wings
 
+[![Laravel](https://github.com/axeldotdev/wings/actions/workflows/laravel.yml/badge.svg)](https://github.com/axeldotdev/wings/actions/workflows/laravel.yml)
+
 Lorem ipsum dolor sit amet
 
 ## Requirements
