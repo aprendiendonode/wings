@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Task;
-use App\Models\User;
-use App\Models\Project;
+use Domain\Task\Models\Task;
+use Domain\User\Models\User;
+use Domain\Project\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 

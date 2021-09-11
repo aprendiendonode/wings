@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Support\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Notifications\DatabaseNotification;

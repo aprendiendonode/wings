@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Task;
-use App\Models\Time;
-use App\Models\User;
+use Domain\Task\Models\Task;
+use Domain\Time\Models\Time;
+use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TimeFactory extends Factory
