@@ -1,5 +1,8 @@
 <?php
 
+use Tests\CreatesApplication;
+use Illuminate\Foundation\Testing\TestCase;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -11,7 +14,7 @@
 |
 */
 
-uses(Tests\TestCase::class)->in('Feature');
+uses(TestCase::class, CreatesApplication::class)->in('Feature', 'Unit');
 
 /*
 |--------------------------------------------------------------------------
