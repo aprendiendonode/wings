@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Label\QueryBuilders;
+namespace Domain\Task\QueryBuilders;
 
 use Domain\Task\States\Open;
 use Domain\Task\States\Closed;

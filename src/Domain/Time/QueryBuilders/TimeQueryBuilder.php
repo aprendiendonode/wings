@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Label\QueryBuilders;
+namespace Domain\Time\QueryBuilders;
 
 use Illuminate\Database\Eloquent\Builder;
 
