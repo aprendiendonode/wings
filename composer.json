@@ -1,9 +1,27 @@
 {
-    "name": "laravel/laravel",
+    "name": "axeldotdev/wings",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "version": "0.0.1",
+    "description": "WIngs helps you manage your projects and tasks with your team.",
+    "keywords": ["wings", "project", "management", "tasks", "teams"],
+    "homepage": "https://github.com/axeldotdev/wings",
+    "readme": "https://github.com/axeldotdev/wings/blob/main/README.md",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Axel Charpentier",
+            "email": "axel.charpentier@hey.com",
+            "homepage": "https://github.com/axeldotdev",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "axel.charpentier@hey.com",
+        "source": "https://github.com/axeldotdev/wings",
+        "issues": "https://github.com/axeldotdev/wings/issues",
+        "docs": "https://github.com/axeldotdev/wings/wiki",
+        "chat": "https://github.com/axeldotdev/wings/discussions"
+    },
     "require": {
         "php": "^7.3|^8.0",
         "barryvdh/laravel-ide-helper": "^2.10",
