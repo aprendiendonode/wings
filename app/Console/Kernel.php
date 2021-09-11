@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+
     ];
 
     /**
@@ -24,7 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('queue:prune-batches --hours=48')->daily();
+        $schedule->command('queue:prune-failed --hours=48')->daily();
+        $schedule->command('auth:clear-resets users')->daily();
+        $schedule->command('telescope:prune --hours=48')->daily();
+        $schedule->command('notifications:prune --days=30')->daily();
     }
 
     /**
@@ -34,7 +38,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
