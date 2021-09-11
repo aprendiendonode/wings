@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Auth\Events\Registered;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateUser extends Command
 {
@@ -14,16 +15,9 @@ class CreateUser extends Command
 
     protected $description = 'Create user';
 
-    public function handle(): int
+    public function handle(CreatesNewUsers $creator): int
     {
-        $user = new User();
-
-        $user->name = $this->argument('username');
-        $user->email = $this->argument('email');
-        $user->password = bcrypt($this->argument('password'));
-        $user->email_verified_at = now();
-
-        $user->save();
+        event(new Registered($creator->create($this->arguments())));
 
         return Command::SUCCESS;
     }
