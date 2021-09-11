@@ -13,7 +13,7 @@ use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Model;
 use Domain\Task\Collections\TaskCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Domain\Label\QueryBuilders\TaskQueryBuilder;
+use Domain\Task\QueryBuilders\TaskQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;

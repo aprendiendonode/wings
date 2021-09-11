@@ -21,4 +21,22 @@ class ProjectFactory extends Factory
             'project_id' => null,
         ];
     }
+
+    public function isDue(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'due_at' => now()->subHour(),
+            ];
+        });
+    }
+
+    public function isNotDue(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'due_at' => now()->addHour(),
+            ];
+        });
+    }
 }

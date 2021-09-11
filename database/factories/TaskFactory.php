@@ -33,4 +33,58 @@ class TaskFactory extends Factory
             'project_id' => Project::factory(),
         ];
     }
+
+    public function isOpen(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => Open::CODE,
+            ];
+        });
+    }
+
+    public function isInProgress(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => InProgress::CODE,
+            ];
+        });
+    }
+
+    public function isReviewed(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => Reviewed::CODE,
+            ];
+        });
+    }
+
+    public function isClosed(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => Closed::CODE,
+            ];
+        });
+    }
+
+    public function isDue(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'due_at' => now()->subHour(),
+            ];
+        });
+    }
+
+    public function isNotDue(): static
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'due_at' => now()->addHour(),
+            ];
+        });
+    }
 }

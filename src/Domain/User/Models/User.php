@@ -12,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Domain\User\Collections\UserCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Domain\Label\QueryBuilders\UserQueryBuilder;
+use Domain\User\QueryBuilders\UserQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;

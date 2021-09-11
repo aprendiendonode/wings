@@ -6,7 +6,7 @@ use Database\Factories\TimeFactory;
 use Illuminate\Database\Eloquent\Model;
 use Domain\Time\Collections\TimeCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Domain\Label\QueryBuilders\TimeQueryBuilder;
+use Domain\Time\QueryBuilders\TimeQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Time extends Model

@@ -7,7 +7,7 @@ use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Domain\Project\Collections\ProjectCollection;
-use Domain\Label\QueryBuilders\ProjectQueryBuilder;
+use Domain\Project\QueryBuilders\ProjectQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
