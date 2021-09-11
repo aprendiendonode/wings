@@ -12,8 +12,7 @@ class CreateLabelsTable extends Migration
             $table->id();
             $table->string('name');
             $table->longText('description')->nullable();
-            $table->string('foreground_color');
-            $table->string('background_color');
+            $table->string('color');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -2,20 +2,24 @@
 
 namespace Domain\Label\Models;
 
+use Database\Factories\LabelFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Spatie\ModelStates\HasStates as HasColors;
 
 class Label extends Model
 {
     use HasFactory;
+    use HasColors;
     use SoftDeletes;
 
-    public const COLORS = [
-        ['foreground' => 'gray-100', 'background' => 'gray-700'],
-    ];
+    public static function newFactory(): LabelFactory
+    {
+        return new LabelFactory();
+    }
 
     public function user(): BelongsTo
     {

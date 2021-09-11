@@ -2,6 +2,7 @@
 
 namespace Domain\Project\Models;
 
+use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,6 +20,11 @@ class Project extends Model
     protected $casts = [
         'due_at' => 'datetime',
     ];
+
+    public static function newFactory(): ProjectFactory
+    {
+        return new ProjectFactory();
+    }
 
     public function user(): BelongsTo
     {

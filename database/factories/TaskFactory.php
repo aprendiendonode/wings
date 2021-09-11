@@ -2,11 +2,15 @@
 
 namespace Database\Factories;
 
-use Domain\Task\Models\Task;
-use Domain\User\Models\User;
-use Domain\Project\Models\Project;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
+use Domain\Task\Models\Task;
+use Domain\Task\States\Open;
+use Domain\User\Models\User;
+use Domain\Task\States\Closed;
+use Domain\Task\States\Reviewed;
+use Domain\Project\Models\Project;
+use Domain\Task\States\InProgress;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TaskFactory extends Factory
 {
@@ -16,10 +20,10 @@ class TaskFactory extends Factory
     {
         return [
             'status' => Arr::random([
-                Task::STATUS_OPEN,
-                Task::STATUS_IN_PROGRESS,
-                Task::STATUS_REVIEWED,
-                Task::STATUS_CLOSED,
+                Open::CODE,
+                InProgress::CODE,
+                Reviewed::CODE,
+                Closed::CODE,
             ]),
             'name' => $this->faker->sentence,
             'description' => $this->faker->paragraph,

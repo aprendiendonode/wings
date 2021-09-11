@@ -2,8 +2,10 @@
 
 namespace Domain\Task\Models;
 
+use Database\Factories\TaskFactory;
 use Domain\Task\States\Open;
 use Domain\Task\States\Closed;
+use Domain\Task\States\Reviewed;
 use Domain\Task\States\TaskState;
 use Spatie\ModelStates\HasStates;
 use Domain\Task\States\InProgress;
@@ -24,6 +26,11 @@ class Task extends Model
     protected $casts = [
         'due_at' => 'datetime',
     ];
+
+    public static function newFactory(): TaskFactory
+    {
+        return new TaskFactory();
+    }
 
     public function user(): BelongsTo
     {
