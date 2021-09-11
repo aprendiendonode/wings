@@ -1,8 +1,8 @@
 ## Wings
 
-[![Laravel](https://github.com/axeldotdev/wings/actions/workflows/laravel.yml/badge.svg)](https://github.com/axeldotdev/wings/actions/workflows/laravel.yml)
+[![Testing](https://github.com/axeldotdev/wings/actions/workflows/testing.yml/badge.svg)](https://github.com/axeldotdev/wings/actions/workflows/testing.yml)
 
-Lorem ipsum dolor sit amet
+Wings helps you manage your projects and tasks with your team.
 
 ## Requirements
 
