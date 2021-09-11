@@ -11,6 +11,7 @@ use Spatie\ModelStates\HasStates;
 use Domain\Task\States\InProgress;
 use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Model;
+use Domain\Task\Collections\TaskCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Domain\Label\QueryBuilders\TaskQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -36,6 +37,11 @@ class Task extends Model
     public function newEloquentBuilder($query): TaskQueryBuilder
     {
         return new TaskQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): TaskCollection
+    {
+        return new TaskCollection($models);
     }
 
     public function user(): BelongsTo

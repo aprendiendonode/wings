@@ -9,6 +9,7 @@ use Domain\Project\Models\Project;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Domain\User\Collections\UserCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Domain\Label\QueryBuilders\UserQueryBuilder;
@@ -43,6 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function newEloquentBuilder($query): UserQueryBuilder
     {
         return new UserQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): UserCollection
+    {
+        return new UserCollection($models);
     }
 
     public function ownedProjects(): HasMany

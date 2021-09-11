@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Domain\Label\Colors\LabelColor;
 use Database\Factories\LabelFactory;
 use Illuminate\Database\Eloquent\Model;
+use Domain\Label\Collections\LabelCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\ModelStates\HasStates as HasColors;
 use Domain\Label\QueryBuilders\LabelQueryBuilder;
@@ -27,6 +28,11 @@ class Label extends Model
     public function newEloquentBuilder($query): LabelQueryBuilder
     {
         return new LabelQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): LabelCollection
+    {
+        return new LabelCollection($models);
     }
 
     public function user(): BelongsTo

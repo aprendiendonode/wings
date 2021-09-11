@@ -6,6 +6,7 @@ use Domain\User\Models\User;
 use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Domain\Project\Collections\ProjectCollection;
 use Domain\Label\QueryBuilders\ProjectQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,6 +32,11 @@ class Project extends Model
     public function newEloquentBuilder($query): ProjectQueryBuilder
     {
         return new ProjectQueryBuilder($query);
+    }
+
+    public function newCollection(array $models = []): ProjectCollection
+    {
+        return new ProjectCollection($models);
     }
 
     public function user(): BelongsTo
