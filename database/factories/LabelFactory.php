@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Domain\User\Models\User;
 use Domain\Label\Models\Label;
-use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LabelFactory extends Factory
@@ -13,13 +12,10 @@ class LabelFactory extends Factory
 
     public function definition(): array
     {
-        $color = Arr::random(Label::COLORS);
-
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
-            'foreground_color' => $color['foreground'],
-            'background_color' => $color['background'],
+            'color' => 'black',
             'user_id' => User::factory(),
         ];
     }

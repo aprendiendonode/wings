@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Task;
 use App\Models\User;
 use App\Models\Project;
+use Domain\Task\States\Open;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,7 +13,7 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->default(Task::STATUS_OPEN);
+            $table->string('status')->default(Open::CODE);
             $table->string('name');
             $table->longText('description')->nullable();
             $table->integer('estimate_time')->nullable();

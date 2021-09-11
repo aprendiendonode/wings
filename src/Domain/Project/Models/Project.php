@@ -2,9 +2,11 @@
 
 namespace Domain\Project\Models;
 
+use Domain\User\Models\User;
 use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Domain\Label\QueryBuilders\ProjectQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,6 +26,11 @@ class Project extends Model
     public static function newFactory(): ProjectFactory
     {
         return new ProjectFactory();
+    }
+
+    public function newEloquentBuilder($query): ProjectQueryBuilder
+    {
+        return new ProjectQueryBuilder($query);
     }
 
     public function user(): BelongsTo
@@ -56,8 +63,6 @@ class Project extends Model
         return $this->belongsToMany(User::class, 'projects_members');
     }
 
-    // TODO: add scopes to retrieve members by their roles
-
     public function labels(): MorphToMany
     {
         return $this->morphToMany(Label::class, 'labellable');
@@ -76,14 +81,5 @@ class Project extends Model
     public function isOwnBy(User $user): bool
     {
         return $this->user->is($user);
-    }
-
-    public function syncMembers(array $args): static
-    {
-        $this->members()->sync($args['members']);
-
-        // TODO: notify the members
-
-        return $this;
     }
 }

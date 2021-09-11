@@ -2,16 +2,17 @@
 
 namespace Domain\Task\Models;
 
-use Database\Factories\TaskFactory;
 use Domain\Task\States\Open;
+use Domain\User\Models\User;
 use Domain\Task\States\Closed;
 use Domain\Task\States\Reviewed;
 use Domain\Task\States\TaskState;
 use Spatie\ModelStates\HasStates;
 use Domain\Task\States\InProgress;
+use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Domain\Label\QueryBuilders\TaskQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -30,6 +31,11 @@ class Task extends Model
     public static function newFactory(): TaskFactory
     {
         return new TaskFactory();
+    }
+
+    public function newEloquentBuilder($query): TaskQueryBuilder
+    {
+        return new TaskQueryBuilder($query);
     }
 
     public function user(): BelongsTo
@@ -87,32 +93,6 @@ class Task extends Model
             ->allowTransition(Closed::class, Open::class);
     }
 
-    /** REFACTOR */
-    public function scopeStatusIs(Builder $query, string $status): Builder
-    {
-        return $query->where('status', $status);
-    }
-
-    public function scopeIsOpen(Builder $query): Builder
-    {
-        return $query->statusIs(static::STATUS_OPEN);
-    }
-
-    public function scopeIsInProgress(Builder $query): Builder
-    {
-        return $query->statusIs(static::STATUS_IN_PROGRESS);
-    }
-
-    public function scopeIsReviewed(Builder $query): Builder
-    {
-        return $query->statusIs(static::STATUS_REVIEWED);
-    }
-
-    public function scopeIsClosed(Builder $query): Builder
-    {
-        return $query->statusIs(static::STATUS_CLOSED);
-    }
-
     public function isDue(): bool
     {
         return now()->gt($this->due_at);
@@ -121,72 +101,6 @@ class Task extends Model
     public function estimateTimePassed(): bool
     {
         return $this->times->sum('time') > $this->estimate_time;
-    }
-
-    public function isOpen(): bool
-    {
-        return $this->status === static::STATUS_OPEN;
-    }
-
-    public function isInProgress(): bool
-    {
-        return $this->status === static::STATUS_IN_PROGRESS;
-    }
-
-    public function isReviewed(): bool
-    {
-        return $this->status === static::STATUS_REVIEWED;
-    }
-
-    public function isClosed(): bool
-    {
-        return $this->status === static::STATUS_CLOSED;
-    }
-
-    public function markAsOpen(): static
-    {
-        $this->status = static::STATUS_OPEN;
-
-        return $this;
-    }
-
-    public function markAsInProgress(): static
-    {
-        $this->status = static::STATUS_IN_PROGRESS;
-
-        return $this;
-    }
-
-    public function markAsReviewed(): static
-    {
-        $this->status = static::STATUS_REVIEWED;
-
-        return $this;
-    }
-
-    public function markAsClosed(): static
-    {
-        $this->status = static::STATUS_CLOSED;
-
-        return $this;
-    }
-
-    public function syncMembers(array $args): static
-    {
-        $this->assignees()->sync($args['assignees']);
-
-        // TODO: notify the assignees
-
-        return $this;
-    }
-
-    public function syncReviewers(array $args): static
-    {
-        $this->reviewers()->sync($args['reviewers']);
-
-        // TODO: notify the reviewers
-
-        return $this;
     }
 
     public function isOwnBy(User $user): bool

@@ -5,6 +5,7 @@ namespace Domain\Time\Models;
 use Database\Factories\TimeFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Domain\Label\QueryBuilders\TimeQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Time extends Model
@@ -27,5 +28,10 @@ class Time extends Model
     public static function newFactory(): TimeFactory
     {
         return new TimeFactory();
+    }
+
+    public function newEloquentBuilder($query): TimeQueryBuilder
+    {
+        return new TimeQueryBuilder($query);
     }
 }

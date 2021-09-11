@@ -2,14 +2,16 @@
 
 namespace Domain\User\Models;
 
-use Illuminate\Support\Str;
+use Domain\Task\Models\Task;
+use Domain\Label\Models\Label;
 use Laravel\Sanctum\HasApiTokens;
+use Domain\Project\Models\Project;
 use Database\Factories\UserFactory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Domain\Label\QueryBuilders\UserQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,6 +38,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function newFactory(): UserFactory
     {
         return new UserFactory();
+    }
+
+    public function newEloquentBuilder($query): UserQueryBuilder
+    {
+        return new UserQueryBuilder($query);
     }
 
     public function ownedProjects(): HasMany
@@ -79,77 +86,5 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return false;
-    }
-
-    public function createLabel(array $args): Project
-    {
-        $label = new Project();
-
-        $label->name = $args['name'];
-        $label->description = $args['description'];
-        $label->foreground_color = Label::COLORS[$args['color']]['foreground'];
-        $label->background_color = Label::COLORS[$args['color']]['background'];
-        $label->user_id = $this->id;
-
-        $label->save();
-
-        return $label;
-    }
-
-    public function createProject(array $args): Project
-    {
-        $project = new Project();
-
-        $project->name = $args['name'];
-        $project->description = $args['description'];
-        $project->user_id = $this->id;
-        $project->project_id = $args['project_id'];
-
-        $project->save();
-
-        return $project;
-    }
-
-    public function createTask(array $args): Task
-    {
-        $task = new Task();
-
-        $task->status = Task::STATUS_OPEN;
-        $task->name = $args['name'];
-        $task->description = $args['description'];
-        $task->user_id = $this->id;
-        $task->project_id = $args['project_id'];
-
-        $task->save();
-
-        return $task;
-    }
-
-    public function createTime(array $args): Time
-    {
-        $time = new Time();
-
-        $time->start_at = $args['start_at'];
-        $time->end_at = $args['end_at'];
-        $time->task_id = $args['task_id'];
-        $time->user_id = $this->id;
-
-        $time->save();
-
-        return $time;
-    }
-
-    public function createUser(array $args): static
-    {
-        $user = new static();
-
-        $user->name = $args['name'];
-        $user->email = $args['email'];
-        $user->role = $args['role'];
-        $user->password = Hash::make(Str::random(8));
-
-        $user->save();
-
-        return $user;
     }
 }

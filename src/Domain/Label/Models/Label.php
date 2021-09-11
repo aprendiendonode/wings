@@ -2,13 +2,16 @@
 
 namespace Domain\Label\Models;
 
+use Illuminate\Support\Str;
+use Domain\Label\Colors\LabelColor;
 use Database\Factories\LabelFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\ModelStates\HasStates as HasColors;
+use Domain\Label\QueryBuilders\LabelQueryBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Spatie\ModelStates\HasStates as HasColors;
 
 class Label extends Model
 {
@@ -19,6 +22,11 @@ class Label extends Model
     public static function newFactory(): LabelFactory
     {
         return new LabelFactory();
+    }
+
+    public function newEloquentBuilder($query): LabelQueryBuilder
+    {
+        return new LabelQueryBuilder($query);
     }
 
     public function user(): BelongsTo
@@ -34,5 +42,12 @@ class Label extends Model
     public function tasks(): MorphToMany
     {
         return $this->morphedByMany(Task::class, 'labellable');
+    }
+
+    public function getColor(): LabelColor
+    {
+        $color = Str::camel($this->color);
+
+        return new $color($this);
     }
 }
