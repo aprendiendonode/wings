@@ -3,6 +3,7 @@
 namespace Domain\Time\Models;
 
 use Database\Factories\TimeFactory;
+use Domain\Time\Events\TimeSavingEvent;
 use Illuminate\Database\Eloquent\Model;
 use Domain\Time\Collections\TimeCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,12 +20,9 @@ class Time extends Model
         'end_at' => 'datetime',
     ];
 
-    protected static function booted()
-    {
-        static::saving(function ($time) {
-            $time->time = $time->end_at->diffInMinutes($time->start_at);
-        });
-    }
+    protected $dispatchesEvents = [
+        'saving' => TimeSavingEvent::class,
+    ];
 
     public static function newFactory(): TimeFactory
     {
