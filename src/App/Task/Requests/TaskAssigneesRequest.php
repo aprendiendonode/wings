@@ -9,7 +9,7 @@ class TaskAssigneesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'assignees' => ['required', 'array'],
+            'assignees' => ['required', 'array', 'exists:users,id'],
         ];
     }
 }

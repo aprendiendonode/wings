@@ -9,7 +9,7 @@ class TaskReviewersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'reviewers' => ['required', 'array'],
+            'reviewers' => ['required', 'array', 'exists:users,id'],
         ];
     }
 }

@@ -11,7 +11,7 @@ class TimeRequest extends FormRequest
         return [
             'start_at' => ['required', 'datetime'],
             'end_at' => ['required', 'datetime'],
-            'task_id' => ['required', 'integer', 'exists:tasks'],
+            'task_id' => ['required', 'integer', 'exists:tasks,id'],
         ];
     }
 }

@@ -9,7 +9,7 @@ class ProjectMembersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'members' => ['required', 'array'],
+            'members' => ['required', 'array', 'exists:users,id'],
         ];
     }
 }

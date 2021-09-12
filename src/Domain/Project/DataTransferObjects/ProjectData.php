@@ -1,5 +1,7 @@
 <?php
 
+namespace Domain\Project\DataTransferObjects;
+
 use Carbon\Carbon;
 use Spatie\DataTransferObject\DataTransferObject;
 
