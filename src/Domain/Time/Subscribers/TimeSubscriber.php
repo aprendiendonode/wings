@@ -9,7 +9,7 @@ use Domain\Time\Actions\CalculateTimeAction;
 class TimeSubscriber
 {
     public function __construct(
-        private CalculateTimeAction $calculatePriceAction
+        private CalculateTimeAction $calculateTimeAction
     ) {
     }
 
