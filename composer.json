@@ -3,7 +3,7 @@
     "type": "project",
     "version": "0.0.1",
     "description": "Wings helps you manage your projects and tasks with your team.",
-    "keywords": ["wings", "project", "management", "tasks", "teams"],
+    "keywords": ["wings", "project", "management", "tasks", "teams", "laravel"],
     "homepage": "https://github.com/axeldotdev/wings",
     "readme": "https://github.com/axeldotdev/wings/blob/main/README.md",
     "license": "MIT",
