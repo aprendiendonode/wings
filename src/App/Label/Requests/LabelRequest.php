@@ -12,7 +12,7 @@ class LabelRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'color' => ['required', 'integer', Rule::in([
+            'color' => ['required', 'string', Rule::in([
                 'black',
                 'blue',
                 'brown',
