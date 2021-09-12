@@ -11,4 +11,5 @@ class ProjectData extends DataTransferObject
     public string $description;
     public int $estimate_time;
     public Carbon $due_at;
+    public int $user_id;
 }

@@ -11,6 +11,10 @@ class ProjectRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
+            'estimate_time' => ['nullable', 'integer'],
+            'due_at' => ['nullable', 'date'],
+            'project_id' => ['nullable', 'integer', 'exists:projects,id'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
         ];
     }
 }

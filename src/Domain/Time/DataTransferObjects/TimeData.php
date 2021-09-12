@@ -9,5 +9,7 @@ class TimeData extends DataTransferObject
 {
     public Carbon $start_at;
     public Carbon $end_at;
-    public int $time;
+    public ?int $time;
+    public int $task_id;
+    public int $user_id;
 }

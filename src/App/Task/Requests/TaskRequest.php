@@ -22,7 +22,10 @@ class TaskRequest extends FormRequest
             ])],
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
+            'estimated_time' => ['nullable', 'integer'],
+            'due_at' => ['nullable', 'date'],
             'project_id' => ['required', 'integer', 'exists:projects,id'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
         ];
     }
 }

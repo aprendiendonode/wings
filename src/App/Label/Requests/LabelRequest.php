@@ -3,6 +3,7 @@
 namespace App\Label\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LabelRequest extends FormRequest
 {
@@ -11,7 +12,19 @@ class LabelRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'color' => ['required', 'integer'],
+            'color' => ['required', 'integer', Rule::in([
+                'black',
+                'blue',
+                'brown',
+                'gray',
+                'green',
+                'orange',
+                'pink',
+                'purple',
+                'red',
+                'white',
+                'yellow',
+            ])],
         ];
     }
 }
