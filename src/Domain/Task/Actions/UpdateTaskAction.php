@@ -9,15 +9,15 @@ class CreateTaskAction
 {
     public function __construct(
         public SaveTaskAction $saveTaskAction,
-        public SendCreateTaskNotificationAction $sendCreateTaskNotificationAction,
+        public SendUpdateTaskNotificationAction $sendUpdateTaskNotificationAction,
     ) {
     }
 
-    public function __invoke(TaskData $data): Task
+    public function __invoke(Task $task, TaskData $data): Task
     {
-        $task = ($this->saveTaskAction)($data);
+        $task = ($this->saveTaskAction)($data, $task);
 
-        ($this->sendCreateTaskNotificationAction)($task);
+        ($this->sendUpdateTaskNotificationAction)($task);
 
         return $task;
     }
