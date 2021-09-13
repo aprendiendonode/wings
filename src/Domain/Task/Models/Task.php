@@ -4,16 +4,19 @@ namespace Domain\Task\Models;
 
 use Domain\Task\States\Open;
 use Domain\User\Models\User;
+use Domain\Label\Models\Label;
 use Domain\Task\States\Closed;
 use Domain\Task\States\Reviewed;
 use Domain\Task\States\TaskState;
 use Spatie\ModelStates\HasStates;
+use Domain\Project\Models\Project;
 use Domain\Task\States\InProgress;
 use Database\Factories\TaskFactory;
 use Illuminate\Database\Eloquent\Model;
 use Domain\Task\Collections\TaskCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Domain\Task\QueryBuilders\TaskQueryBuilder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -67,6 +70,11 @@ class Task extends Model
     public function reviewers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'reviewers');
+    }
+
+    public function times(): HasMany
+    {
+        return $this->hasMany(Time::class);
     }
 
     public function getState(): TaskState

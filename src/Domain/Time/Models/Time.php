@@ -2,12 +2,15 @@
 
 namespace Domain\Time\Models;
 
+use Domain\Task\Models\Task;
+use Domain\User\Models\User;
 use Database\Factories\TimeFactory;
 use Domain\Time\Events\TimeSavingEvent;
 use Illuminate\Database\Eloquent\Model;
 use Domain\Time\Collections\TimeCollection;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Domain\Time\QueryBuilders\TimeQueryBuilder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Time extends Model
@@ -37,5 +40,15 @@ class Time extends Model
     public function newCollection(array $models = []): TimeCollection
     {
         return new TimeCollection($models);
+    }
+
+    public function task(): BelongsTo
+    {
+        return $this->belongsTo(Task::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

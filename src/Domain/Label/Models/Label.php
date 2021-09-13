@@ -3,6 +3,9 @@
 namespace Domain\Label\Models;
 
 use Illuminate\Support\Str;
+use Domain\Task\Models\Task;
+use Domain\User\Models\User;
+use Domain\Project\Models\Project;
 use Domain\Label\Colors\LabelColor;
 use Database\Factories\LabelFactory;
 use Illuminate\Database\Eloquent\Model;

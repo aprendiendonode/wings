@@ -7,6 +7,7 @@ use Domain\Label\Models\Label;
 use Laravel\Sanctum\HasApiTokens;
 use Domain\Project\Models\Project;
 use Database\Factories\UserFactory;
+use Domain\Time\Models\Time;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Domain\User\Collections\UserCollection;
@@ -79,6 +80,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function reviewedTasks(): BelongsToMany
     {
         return $this->belongsToMany(Task::class, 'reviewers');
+    }
+
+    public function times(): HasMany
+    {
+        return $this->hasMany(Time::class);
     }
 
     public function own(Model $model): bool
