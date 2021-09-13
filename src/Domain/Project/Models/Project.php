@@ -69,7 +69,7 @@ class Project extends Model
 
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'projects_members');
+        return $this->belongsToMany(User::class, 'project_members');
     }
 
     public function labels(): MorphToMany
