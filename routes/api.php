@@ -37,8 +37,8 @@ Route::put('projects/{project}/restore', [ProjectController::class, 'restore'])-
 Route::delete('projects/{project}/force-delete', [ProjectController::class, 'forceDelete'])->name('projects.forceDelete');
 
 // Tasks
-Route::get('tasks', [TaskController::class, 'index'])->name('tasks.index');
-Route::get('tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+Route::get('/projects/{project}/tasks', [TaskController::class, 'index'])->name('tasks.index');
+Route::get('/projects/{project}/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
 Route::post('tasks', [TaskController::class, 'store'])->name('tasks.store');
 Route::put('tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
 Route::delete('tasks/{task}', [TaskController::class, 'delete'])->name('tasks.delete');
@@ -46,8 +46,8 @@ Route::put('tasks/{task}/restore', [TaskController::class, 'restore'])->name('ta
 Route::delete('tasks/{task}/force-delete', [TaskController::class, 'forceDelete'])->name('tasks.forceDelete');
 
 // Times
-Route::get('times', [TimeController::class, 'index'])->name('times.index');
-Route::get('times/{time}', [TimeController::class, 'show'])->name('times.show');
+Route::get('/projects/{project}/tasks/{task}/times', [TimeController::class, 'index'])->name('times.index');
+Route::get('/projects/{project}/tasks/{task}/times/{time}', [TimeController::class, 'show'])->name('times.show');
 Route::post('times', [TimeController::class, 'store'])->name('times.store');
 Route::put('times/{time}', [TimeController::class, 'update'])->name('times.update');
 Route::delete('times/{time}', [TimeController::class, 'delete'])->name('times.delete');
