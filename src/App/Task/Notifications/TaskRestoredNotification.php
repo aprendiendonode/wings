@@ -41,9 +41,20 @@ class TaskRestoredNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject(__(
+                ':Name task has been restored!',
+                ['name' => $this->task->name]
+            ))
+            ->greeting(__('Hello!'))
+            ->line(__(
+                ':Name task has been restored!',
+                ['name' => $this->task->name]
+            ))
+            ->action(__(
+                'View on :Name',
+                ['name' => config('app.name')]
+            ), url('/'))
+            ->salutation(__('Have a nice day!'));
     }
 
     /**
