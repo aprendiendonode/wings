@@ -5,6 +5,7 @@ use Domain\Task\States\Open;
 use Domain\User\Models\User;
 use Domain\Project\Models\Project;
 use Domain\Task\Actions\SaveTaskAction;
+use Illuminate\Support\Facades\Notification;
 use Domain\Task\DataTransferObjects\TaskData;
 
 test('task is saved to the database', function () {
@@ -29,6 +30,8 @@ test('task is saved to the database', function () {
 });
 
 test('task notifications are sent', function () {
+    Notification::fake();
+
     // TODO: test it properly
     expect(true)->toBeTrue();
 });
