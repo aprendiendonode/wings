@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LabelController;
+use App\Task\Controllers\TaskController;
+use App\Time\Controllers\TimeController;
+use App\User\Controllers\UserController;
+use App\Label\Controllers\LabelController;
+use App\Project\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
